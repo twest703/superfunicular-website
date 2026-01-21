@@ -306,7 +306,7 @@ footer hr {
 .hero {
     text-align: center;
     padding: 0px 20px 0px 20px;
-    background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+    background: linear-gradient(90deg, #007bff 0%, #dc3545 100%);
     color: #fff;
     border-radius: 10px;
     margin-bottom: 0px !important;
