@@ -309,7 +309,7 @@ footer hr {
     background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
     color: #fff;
     border-radius: 10px;
-    margin-bottom: 0px;
+    margin-bottom: 0px !important;
 }
 
 .hero h1 {
@@ -366,9 +366,10 @@ footer hr {
 .benefit-card {
     background-color: #fff;
     padding: 25px;
-    border-radius: 8px;
+    border-radius: 0px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     border-left: 4px solid #28a745;
+    margin: 0;
 }
 
 .benefit-card h3 {
