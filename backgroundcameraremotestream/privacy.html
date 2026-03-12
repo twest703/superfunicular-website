@@ -13,7 +13,8 @@
             <p class="subtitle">(Published on Google Play Store as "Background Camera RemoteStream")</p>
             <p class="meta">
                 <strong>Effective Date:</strong> January 16, 2026<br>
-                <strong>Last Updated:</strong> January 16, 2026
+                <strong>Last Updated:</strong> March 12, 2026<br>
+                <strong>Note:</strong> Updated for YouTube API Services compliance
             </p>
             <p class="meta">
                 <strong>Developer:</strong> Super Funicular LLC<br>
@@ -93,6 +94,132 @@
                 <li><strong>PRO Version (Paid):</strong> No analytics, no tracking, no advertising libraries whatsoever</li>
                 <li><strong>FREE Version (Ad-Supported):</strong> Contains AdMob advertising SDK for displaying ads, but no user tracking or data collection beyond what's required for ad serving</li>
             </ul>
+
+            <h3>2.3 Cookies and Tracking Technologies</h3>
+            <p><strong>ADDED (March 12, 2026):</strong> This section has been added to comply with YouTube API Services requirements regarding disclosure of cookies and device data collection.</p>
+
+            <h4>What are Cookies?</h4>
+            <p>Cookies are small data files stored on your device by applications and websites. The App and its integrated services may use cookies and similar tracking technologies to provide functionality and maintain user sessions.</p>
+
+            <h4>How We Use Cookies</h4>
+            <p>Digi Nomad's Background Camera Remote Youtube Streamer uses local storage mechanisms (similar to cookies) to:</p>
+            <ul>
+                <li><strong>Maintain authentication:</strong> Store YouTube OAuth tokens to keep you signed in</li>
+                <li><strong>Save preferences:</strong> Remember your camera settings, stream quality, and app configuration</li>
+                <li><strong>Enable remote access:</strong> Store web interface credentials for the local network server</li>
+                <li><strong>Improve performance:</strong> Cache frequently accessed data to reduce loading times</li>
+            </ul>
+            <p><strong>All cookies and local data are stored on your device only</strong>—we do not transmit this information to external servers.</p>
+
+            <h4>Third-Party Cookies</h4>
+            <p>When you authenticate with YouTube/Google services or use advertising features, third parties may place cookies on your device:</p>
+            <ul>
+                <li><strong>Google/YouTube:</strong> Authentication cookies to maintain your Google account session and enable YouTube API functionality</li>
+                <li><strong>Google AdMob (FREE version only):</strong> Advertising cookies to serve personalized ads and track ad performance</li>
+                <li><strong>Firebase Crashlytics:</strong> Session cookies to track crash reports and diagnostics</li>
+            </ul>
+
+            <h4>Device Information We Access</h4>
+            <p>The App accesses and may collect the following device information:</p>
+            <ul>
+                <li><strong>Device identifiers:</strong>
+                    <ul>
+                        <li>Android ID (unique to each app installation)</li>
+                        <li>Device model and manufacturer (e.g., "Samsung Galaxy S23")</li>
+                        <li>Android OS version (e.g., "Android 14")</li>
+                    </ul>
+                </li>
+                <li><strong>Network information:</strong>
+                    <ul>
+                        <li>Local IP address (for remote web interface)</li>
+                        <li>WiFi network name (SSID) and connection status</li>
+                        <li>Internet connectivity type (WiFi, cellular data)</li>
+                    </ul>
+                </li>
+                <li><strong>Device capabilities:</strong>
+                    <ul>
+                        <li>Available cameras (front/back)</li>
+                        <li>Supported video resolutions and frame rates</li>
+                        <li>Available storage space</li>
+                        <li>Screen resolution and orientation</li>
+                    </ul>
+                </li>
+                <li><strong>App usage data (minimal):</strong>
+                    <ul>
+                        <li>App version number</li>
+                        <li>Installation timestamp</li>
+                        <li>Crash reports (via Firebase Crashlytics—FREE version only)</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <h4>How Device Information is Stored</h4>
+            <p>Information may be stored in the following locations:</p>
+            <ul>
+                <li><strong>Locally on your device:</strong>
+                    <ul>
+                        <li>App settings and preferences (Android SharedPreferences)</li>
+                        <li>Video recordings and photos (device storage)</li>
+                        <li>YouTube OAuth tokens (encrypted Android storage)</li>
+                        <li>Web interface credentials (app-specific encrypted storage)</li>
+                    </ul>
+                </li>
+                <li><strong>In Google's servers:</strong>
+                    <ul>
+                        <li>YouTube authentication tokens (managed by Google OAuth)</li>
+                        <li>Your YouTube channel information (name, ID)</li>
+                        <li>Video stream metadata when you broadcast to YouTube Live</li>
+                    </ul>
+                </li>
+                <li><strong>In Firebase servers (FREE version only):</strong>
+                    <ul>
+                        <li>Anonymous crash reports and diagnostics</li>
+                        <li>Device model and Android version (for debugging)</li>
+                        <li>No personally identifiable information</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <h4>Third-Party Data Access</h4>
+            <p>The following third parties may access data through or from the App:</p>
+            <ul>
+                <li><strong>Google/YouTube:</strong>
+                    <ul>
+                        <li>Your Google account information (name, email, profile picture)</li>
+                        <li>YouTube channel data (channel name, ID, subscriber count)</li>
+                        <li>Video stream metadata (title, description, privacy settings)</li>
+                        <li>Stream analytics data (views, watch time, engagement)</li>
+                    </ul>
+                </li>
+                <li><strong>Google AdMob (FREE version only):</strong>
+                    <ul>
+                        <li>Advertising ID (for personalized ads)</li>
+                        <li>Device model and OS version</li>
+                        <li>App package name and version</li>
+                        <li>Ad interaction data (clicks, impressions)</li>
+                    </ul>
+                </li>
+                <li><strong>Firebase Crashlytics (FREE version only):</strong>
+                    <ul>
+                        <li>Crash logs and stack traces</li>
+                        <li>Device model, manufacturer, and Android version</li>
+                        <li>App version and installation ID</li>
+                        <li>No user-identifiable information or recordings</li>
+                    </ul>
+                </li>
+            </ul>
+            <p><strong>Important:</strong> The PRO version does NOT include AdMob or Firebase Crashlytics—no third-party analytics or advertising libraries are present.</p>
+
+            <h4>Managing Cookies and Device Data</h4>
+            <p>You can control how cookies and device data are collected:</p>
+            <ul>
+                <li><strong>Revoke YouTube authorization:</strong> Go to Settings → YouTube Stream from File → Clear Authorization, or visit <a href="https://myaccount.google.com/permissions" target="_blank">Google Account Permissions</a></li>
+                <li><strong>Clear app data:</strong> Android Settings → Apps → Digi Nomad's Background Camera Remote Youtube Streamer → Storage → Clear Data</li>
+                <li><strong>Disable personalized ads (FREE version):</strong> Android Settings → Google → Ads → Opt out of Ads Personalization</li>
+                <li><strong>Revoke permissions:</strong> Android Settings → Apps → Digi Nomad's Background Camera Remote Youtube Streamer → Permissions → Disable specific permissions</li>
+                <li><strong>Uninstall the app:</strong> Removes all app data, settings, cookies, and credentials from your device</li>
+            </ul>
+            <p><strong>Note:</strong> Revoking certain permissions or clearing data may prevent the app from functioning correctly. You may need to re-authenticate or reconfigure settings after clearing data.</p>
         </section>
 
         <section id="how-we-use">
@@ -181,13 +308,28 @@
             <p>Digi Nomad's Background Camera Remote Youtube Streamer integrates with the following third-party services:</p>
 
             <h3>5.1 YouTube API Services</h3>
+            <p><strong>UPDATED (March 12, 2026):</strong> Enhanced disclosure for YouTube API compliance.</p>
             <ul>
                 <li><strong>Purpose:</strong> Enable YouTube Live streaming functionality</li>
-                <li><strong>Data shared:</strong> Video/audio stream data, YouTube channel information</li>
+                <li><strong>Data shared:</strong> Video/audio stream data, YouTube channel information, stream metadata</li>
                 <li><strong>Privacy Policy:</strong> <a href="https://policies.google.com/privacy" target="_blank">https://policies.google.com/privacy</a></li>
                 <li><strong>Terms of Service:</strong> <a href="https://www.youtube.com/t/terms" target="_blank">https://www.youtube.com/t/terms</a></li>
             </ul>
-            <p>By using YouTube Live streaming features, you agree to be bound by the <a href="https://www.youtube.com/t/terms" target="_blank">YouTube Terms of Service</a> and <a href="https://policies.google.com/privacy" target="_blank">Google Privacy Policy</a>.</p>
+            <p><strong>By using YouTube Live streaming features, you acknowledge and agree to be bound by:</strong></p>
+            <ul>
+                <li>The <a href="https://www.youtube.com/t/terms" target="_blank">YouTube Terms of Service</a></li>
+                <li>The <a href="https://policies.google.com/privacy" target="_blank">Google Privacy Policy</a></li>
+                <li>Our <a href="./terms/">Terms of Service</a> (which incorporates YouTube's Terms)</li>
+            </ul>
+            <p><strong>YouTube Data Usage:</strong></p>
+            <p>When you authorize the App to access your YouTube account, we request permission to:</p>
+            <ul>
+                <li>Create and manage live broadcasts on your channel</li>
+                <li>Upload videos to your YouTube account</li>
+                <li>Retrieve your channel information (name, ID, profile picture)</li>
+                <li>Access YouTube Analytics data for your streams</li>
+            </ul>
+            <p><strong>Data Retention:</strong> YouTube authentication tokens are stored securely on your device using Android's encrypted storage. You can revoke this access at any time through the app's Settings or your <a href="https://myaccount.google.com/permissions" target="_blank">Google Account Permissions</a> page.</p>
 
             <h3>5.2 RootEncoder Library</h3>
             <ul>
