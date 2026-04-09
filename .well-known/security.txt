@@ -1,0 +1,8 @@
+# Super Funicular LLC - Security Contact Information
+# https://securitytxt.org/ | RFC 9116
+
+Contact: mailto:security@superfunicular.com
+Contact: mailto:dev@superfunicular.com
+Expires: 2027-04-09T00:00:00.000Z
+Preferred-Languages: en
+Policy: https://superfunicular.com/backgroundcameraremotestream/privacy
