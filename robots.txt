@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /backgroundcameraremotestream/compliance-evidence.html
+Disallow: /backgroundcameraremotestream/compliance/
+
+Sitemap: https://superfunicular.com/sitemap.xml
