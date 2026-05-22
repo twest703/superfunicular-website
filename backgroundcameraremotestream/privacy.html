@@ -30,8 +30,8 @@
             <p class="subtitle">(Published on Google Play Store as "Background Camera RemoteStream")</p>
             <p class="meta">
                 <strong>Effective Date:</strong> January 16, 2026<br>
-                <strong>Last Updated:</strong> March 12, 2026<br>
-                <strong>Note:</strong> Updated for YouTube API Services compliance
+                <strong>Last Updated:</strong> May 22, 2026<br>
+                <strong>Note:</strong> Updated for Google OAuth Verification compliance &mdash; adds explicit Google API Services User Data Policy / Limited Use disclosure and specifies the technical data-protection mechanisms applied to Google user data.
             </p>
             <p class="meta">
                 <strong>Developer:</strong> Super Funicular LLC<br>
@@ -295,12 +295,41 @@
             </ul>
 
             <h3>4.2 Security Measures</h3>
-            <p>We implement reasonable security measures to protect your data:</p>
+            <p><strong>UPDATED (May 22, 2026):</strong> Expanded with named technical mechanisms in response to Google OAuth Verification review feedback.</p>
+            <p>We implement industry-standard security mechanisms to protect your data, including Google user data received from Google APIs. The specific mechanisms are described below.</p>
+
+            <h4>4.2.1 Encryption at Rest</h4>
             <ul>
-                <li><strong>Authentication:</strong> The remote web interface requires password authentication (Basic Auth)</li>
-                <li><strong>Local network only:</strong> Remote access is restricted to your local WiFi network (not accessible from the internet)</li>
-                <li><strong>Encrypted credentials:</strong> YouTube OAuth tokens are stored securely using Android's encrypted storage mechanisms</li>
-                <li><strong>Foreground services:</strong> Camera and recording services use Android foreground services with user-visible notifications, ensuring transparency</li>
+                <li><strong>OAuth tokens</strong> (Google account access tokens and refresh tokens) are stored using Android's <code>EncryptedSharedPreferences</code> from the AndroidX Security library. EncryptedSharedPreferences encrypts both keys and values using the AES-256-GCM scheme (specifically <code>PrefValueEncryptionScheme.AES256_GCM</code> and <code>PrefKeyEncryptionScheme.AES256_SIV</code>) with a master key obtained from <code>MasterKey.KeyScheme.AES256_GCM</code>.</li>
+                <li><strong>Master keys</strong> for EncryptedSharedPreferences are stored in the Android Keystore. On devices that support it, keys are hardware-backed by the StrongBox security chip or Trusted Execution Environment (TEE). On devices without hardware-backed keystore, keys remain protected by the platform's software-isolated keystore.</li>
+                <li><strong>Remote web interface credentials</strong> (Basic Auth username and password for the optional local-network web interface) are stored using the same EncryptedSharedPreferences mechanism.</li>
+                <li><strong>Google user data</strong> beyond what is needed for an active session (such as the Google account identifier, YouTube channel name, and channel ID) is held only in memory while the App is running and is not persisted to plaintext storage. The App writes no Google user data to logs, regular SharedPreferences, files, or any other unencrypted storage location.</li>
+                <li><strong>Video recordings</strong> are stored on your device's local storage in the location you select (default: DCIM/Background Camera Remote/). Recordings are protected by Android's device-level encryption, which is enabled by default on Android 6.0 (API 23) and later. Recordings are never uploaded, backed up, or transmitted to any server by the App.</li>
+            </ul>
+
+            <h4>4.2.2 Encryption in Transit</h4>
+            <ul>
+                <li><strong>All communication with Google APIs</strong> (YouTube Data API v3, OAuth 2.0 endpoints, Google Sign-In) uses TLS 1.2 or higher. This is enforced by Android's network security defaults and by our use of the official Google API Client Library for Android, which does not permit insecure connections to Google endpoints.</li>
+                <li><strong>YouTube Live video stream data</strong> is transmitted via the RTMP protocol to YouTube's ingest servers. The App uses RTMPS (RTMP over TLS) where supported by YouTube's ingest endpoint for the selected stream key.</li>
+                <li><strong>OAuth tokens are never transmitted over unencrypted channels.</strong> All token refresh and revocation calls go to Google's OAuth endpoints over TLS.</li>
+                <li><strong>The local-network web interface</strong> uses HTTP (not HTTPS) because it is strictly bound to your local WiFi network and never traverses the public internet. No Google user data is exposed through the local web interface; the interface controls only camera operations and recording state on the local device.</li>
+            </ul>
+
+            <h4>4.2.3 Access Controls</h4>
+            <ul>
+                <li><strong>The remote web interface requires authentication</strong> via username and password (Basic Auth). Credentials are user-configurable in the App's settings.</li>
+                <li><strong>The web server is bound only to your local network.</strong> It cannot be reached from the public internet without deliberate network reconfiguration by the user (for example, intentional port-forwarding on the user's home router), which is outside the App's control and outside its supported use.</li>
+                <li><strong>Foreground services use user-visible notifications,</strong> ensuring transparency and compliance with Android's foreground-service requirements. You can see at all times when the App is recording, streaming, or running its remote server.</li>
+                <li><strong>Only the user's device has access to their Google user data.</strong> The developer (Super Funicular LLC) operates no servers that store, process, cache, or relay Google user data.</li>
+                <li><strong>Developer-side human access:</strong> no employee, contractor, or representative of Super Funicular LLC has the ability to read your Google user data. We have no back-end systems that would make such access technically possible.</li>
+            </ul>
+
+            <h4>4.2.4 Data Minimization</h4>
+            <ul>
+                <li><strong>We request the minimum OAuth scopes</strong> required for the YouTube Live streaming feature (enumerated in Section 5.1).</li>
+                <li><strong>We do not retain Google user data beyond what is needed for the active streaming session.</strong> OAuth tokens persist on your device only until you revoke access; all other Google user data is held only in memory while the App is running.</li>
+                <li><strong>We do not copy, back up, or transmit Google user data</strong> to any server other than Google's own YouTube services.</li>
+                <li><strong>We do not collect Google user data for any secondary use</strong> such as analytics, advertising, machine-learning model training, or business intelligence.</li>
             </ul>
 
             <h3>4.3 Data Retention</h3>
@@ -324,7 +353,52 @@
             <h2>5. Third-Party Services</h2>
             <p>Digi Nomad's Background Camera Remote Youtube Streamer integrates with the following third-party services:</p>
 
-            <h3>5.1 YouTube API Services</h3>
+            <h3>5.1 Google API Services User Data &mdash; Limited Use</h3>
+            <p><strong>ADDED (May 22, 2026):</strong> This section is added in response to Google's OAuth Verification review feedback to make our handling of Google user data explicit and unambiguous.</p>
+
+            <h4>Limited Use Disclosure</h4>
+            <p>Digi Nomad's Background Camera Remote Youtube Streamer's use and transfer to any other app of information received from Google APIs will adhere to the <a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank">Google API Services User Data Policy</a>, including the Limited Use requirements.</p>
+
+            <h4>Definition of "Google User Data"</h4>
+            <p>For the purposes of this section, "Google user data" means any data &mdash; including content, communications, and metadata &mdash; that the App obtains from or about you through Google APIs. In our case, this includes:</p>
+            <ul>
+                <li>Your Google Account identifier (used only to maintain your authenticated session)</li>
+                <li>Your YouTube channel information (channel name, channel ID, profile picture) &mdash; used only to display your channel within the App and to create broadcasts on the correct channel</li>
+                <li>YouTube live broadcast metadata that you create through the App (title, description, privacy settings) &mdash; used only to set up and manage the live stream you initiate</li>
+                <li>OAuth access tokens and refresh tokens issued by Google &mdash; used only to authorize subsequent Google API calls during your authenticated session</li>
+            </ul>
+            <p>Google user data is processed exclusively on your device and transmitted only between your device and Google's own YouTube services as required to provide the live-streaming feature you explicitly initiate.</p>
+
+            <h4>With Whom We Share, Transfer, or Disclose Google User Data</h4>
+            <p><strong>We do not share, transfer, or disclose Google user data with any third party.</strong> Specifically:</p>
+            <ul>
+                <li><strong>We do not share Google user data with Google AdMob.</strong> AdMob (which appears only in the FREE, ad-supported version of the App) receives the Android advertising ID, device model, and OS version for the purpose of serving advertisements &mdash; none of which constitute Google user data as defined above.</li>
+                <li><strong>We do not share Google user data with Firebase Crashlytics.</strong> Crashlytics (which appears only in the FREE version of the App) receives anonymized crash logs, device model, manufacturer, Android version, and app installation ID for the purpose of diagnosing crashes &mdash; none of which constitute Google user data.</li>
+                <li><strong>We do not share Google user data with any analytics provider, advertising network, data broker, or affiliate.</strong></li>
+                <li><strong>We do not use Google user data to train, fine-tune, or otherwise develop any artificial-intelligence or machine-learning model</strong> (whether our own model, a third-party model, or any other system).</li>
+                <li><strong>We do not allow human review of Google user data</strong> except in the limited circumstances expressly permitted by Google's Limited Use policy: (a) where you have given us affirmative consent for specific data; (b) where necessary for security purposes (such as investigating abuse); (c) to comply with applicable law; or (d) for internal operations on data that has been aggregated and anonymized so it can no longer be used to identify an individual user.</li>
+                <li><strong>We do not sell Google user data.</strong></li>
+            </ul>
+            <p>The only "transfer" of Google user data is between your device and Google's own YouTube servers &mdash; that is, between Google and Google's own service &mdash; as required to perform the live-streaming feature you initiate. We do not act as an intermediary that copies, forwards, or retains Google user data on our own servers. In fact, the developer (Super Funicular LLC) operates no servers that hold any user data at all.</p>
+
+            <h4>Why We Request Each Google OAuth Scope</h4>
+            <p>The App requests only the minimum OAuth scopes required to provide the YouTube Live streaming feature. Each scope is requested for an explicit, user-facing purpose:</p>
+            <ul>
+                <li><code>https://www.googleapis.com/auth/youtube</code> &mdash; required to create and manage live broadcasts on your channel, including starting and stopping broadcasts you initiate within the App.</li>
+                <li><code>https://www.googleapis.com/auth/youtube.force-ssl</code> &mdash; required for the same broadcast-management operations over a TLS-secured connection, as recommended by Google.</li>
+                <li><code>https://www.googleapis.com/auth/youtube.readonly</code> &mdash; required to read your channel name, channel ID, and basic channel metadata so the App can display your channel and post broadcasts to the correct channel.</li>
+                <li><code>https://www.googleapis.com/auth/userinfo.email</code> and <code>https://www.googleapis.com/auth/userinfo.profile</code> &mdash; used only to identify the signed-in Google account on the App's authentication screen so you can confirm you are signed in with the correct account.</li>
+            </ul>
+            <p>The App does not request, and will not request, any restricted scope outside the YouTube live-streaming use case described in our OAuth Verification submission. If our use case changes in the future, we will submit a new verification request before requesting any additional scope.</p>
+
+            <h4>Your Control Over Google User Data</h4>
+            <ul>
+                <li>You can revoke the App's access to your Google account at any time via the App (Settings &rarr; YouTube Stream from File &rarr; Clear Authorization) or via your <a href="https://myaccount.google.com/permissions" target="_blank">Google Account Permissions page</a>.</li>
+                <li>Revoking access immediately invalidates the OAuth tokens stored on your device; on next launch the App deletes its local copy and can no longer access any Google user data.</li>
+                <li>Uninstalling the App removes all OAuth tokens and Google-user-data caches from your device.</li>
+            </ul>
+
+            <h3>5.2 YouTube API Services</h3>
             <p><strong>UPDATED (March 12, 2026):</strong> Enhanced disclosure for YouTube API compliance.</p>
             <ul>
                 <li><strong>Purpose:</strong> Enable YouTube Live streaming functionality</li>
@@ -348,7 +422,7 @@
             </ul>
             <p><strong>Data Retention:</strong> YouTube authentication tokens are stored securely on your device using Android's encrypted storage. You can revoke this access at any time through the app's Settings or your <a href="https://myaccount.google.com/permissions" target="_blank">Google Account Permissions</a> page.</p>
 
-            <h3>5.2 RootEncoder Library</h3>
+            <h3>5.3 RootEncoder Library</h3>
             <ul>
                 <li><strong>Purpose:</strong> Video encoding and RTMP streaming to YouTube</li>
                 <li><strong>Data processing:</strong> Video/audio encoding happens locally on your device</li>
