@@ -1,2 +1,5 @@
 google.com, pub-6701394792463132, DIRECT, f08c47fec0942fa0
 facebook.com, 1602143357521562, DIRECT, c3e20eee3f780d68
+openx.com, 604039145, DIRECT, 6a698e2ec38604c6
+pubmatic.com, 159856, DIRECT, 5d62403b186f2ace
+rubiconproject.com, 22884, DIRECT, 0bfd66d529a55807
