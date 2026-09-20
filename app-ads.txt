@@ -3,6 +3,7 @@ facebook.com, 1602143357521562, DIRECT, c3e20eee3f780d68
 openx.com, 604039145, DIRECT, 6a698e2ec38604c6
 pubmatic.com, 159856, DIRECT, 5d62403b186f2ace
 rubiconproject.com, 22884, DIRECT, 0bfd66d529a55807
+inmobi.com, 3643f8238ee74bea8471a04afe10cf8e, DIRECT, 83e75a7ae333ca9d
 onetag.com, 97e8e05ada119d6, DIRECT
 onetag.com, 97e8e05ada119d6-OB, DIRECT
 appnexus.com, 13099, RESELLER
